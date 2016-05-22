@@ -1,0 +1,54 @@
+<div class="page-header">
+  <h1><%= controller_name.humanize %>
+    <% if @products.empty? %>
+        <small> have not been created yet</small>
+    <% else %>
+        <small><%= action_name %></small>
+    <% end %>
+    <div class="btn-group right" role="group">
+      <%= link_to 'Add', {action: :new} %>
+    </div>
+  </h1>
+</div>
+
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <table class="table table-hover">
+      <tr>
+        <th>Id</th>
+        <th>Product
+          <%= get_sort_buttons(admin_order_products_path(:name, 'asc'), admin_order_products_path(:name, 'desc')) %>
+        </th>
+        <th>Cost Price
+          <%= get_sort_buttons(admin_order_products_path(:cost_price, 'asc'), admin_order_products_path(:cost_price, 'desc')) %>
+        </th>
+        <th>Min Value</th>
+        <th>Price</th>
+        <th>Type</th>
+        <th>Action</th>
+      </tr>
+      <% @products.each do |product| %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= product.name %></td>
+            <td><%= product.cost_price %></td>
+            <td><%= product.min_value %></td>
+            <td><%= product.price %></td>
+            <td><%= product.product_type %></td>
+            <td>
+              <div class="btn-group" role="group">
+                <%= link_to 'edit', edit_admin_product_path(product) %>
+                <%= link_to 'remove',admin_product_path(product), method: :delete, data: {confirm: 'Are you sure?'} %>
+              </div>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+
+    </div>
+  </div>
+<div class="body_panel panel-default">
+  <%= draw_pagination @products_count, @per_page %>
+</div>
+

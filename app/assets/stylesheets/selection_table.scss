@@ -1,0 +1,38 @@
+// Place all the styles related to the selection_table controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.table_icon_wrapp {
+  padding: 10px;
+  .table_icon {
+    background: lightgoldenrodyellow;
+    height: 200px;
+    position: relative;
+    &:after {
+      content: '';
+      display: block;
+      height: 120px;
+      width: 100%;
+      background: url(dining.png) no-repeat;
+      background-size: 245px 250px;
+      background-position: center;
+    }
+  }
+  .table_name {
+    padding: 20px 10px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+    width: 100%;
+  }
+}
+
+.table_icon:hover {
+    background-color: lightgreen;
+  }
+
+.table_icon.table_disabled{
+  background-color: lightgray !important;
+}

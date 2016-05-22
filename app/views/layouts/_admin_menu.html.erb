@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">CB Panel</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <% if signed_in? %>
+          <ul class="nav navbar-nav">
+            <li> <%= link_to 'Products', admin_products_path %></li>
+            <li> <%= link_to 'Cocktails', admin_cocktails_path %></li>
+            <li> <%= link_to 'Tables', admin_tables_path %></li>
+            <li> <%= link_to 'Waiters', admin_waiters_path %></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><p class="navbar-text"> logged as <%= link_to current_user.name, admin_user_path(current_user) %></p></li>
+            <li><p class="navbar-text"><%= link_to 'Sign Out', admin_signout_path, method: 'delete' %></p></li>
+          </ul>
+      <% else %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><p class="navbar-text"><%= link_to 'Sign In', admin_signin_path %></p></li>
+            <li><p class="navbar-text"><%= link_to 'Sign Up', admin_signup_path %></p></li>
+          </ul>
+      <% end %>
+
+    </div>
+
+  </div>
+</nav>

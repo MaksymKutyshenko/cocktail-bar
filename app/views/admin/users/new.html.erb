@@ -1,0 +1,44 @@
+<div class="page-header">
+  <h1><%= controller_name.humanize %>
+    <small><%= action_name %></small>
+  </h1>
+</div>
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <%= form_for [:admin, @user], html: {class: 'form-horizontal'} do |f| %>
+        <div class="field form-group">
+          <%= f.label :name, class: 'col-sm-2 control-label' %>
+          <div class="col-sm-10">
+            <%= text_field(:user, :name, class: 'form-control') %>
+          </div>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :email, class: 'col-sm-2 control-label' %>
+          <div class="col-sm-10">
+            <%= email_field(:user, :email, class: 'form-control') %>
+          </div>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :password, class: 'col-sm-2 control-label' %>
+          <div class="col-sm-10">
+            <%= password_field(:user, :password, class: 'form-control') %>
+          </div>
+        </div>
+
+        <div class="field form-group">
+          <%= f.label :password_confirmation, class: 'col-sm-2 control-label' %>
+          <div class="col-sm-10">
+            <%= password_field(:user, :password_confirmation, class: 'form-control') %>
+          </div>
+        </div>
+
+        <div class="actions form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <%= f.submit "Register" %>
+          </div>
+        </div>
+    <% end %>
+  </div>
+</div>

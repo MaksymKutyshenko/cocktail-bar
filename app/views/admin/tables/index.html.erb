@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h1><%= controller_name.humanize %>
+    <% if @tables.empty? %>
+        <small>Tables have not been created yet</small>
+    <% else %>
+        <small><%= action_name %></small>
+    <% end %>
+    <div class="btn-group right" role="group">
+      <%= link_to 'Add', new_admin_table_path %>
+    </div>
+  </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <table class="table table-hover">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Edit</th>
+        <th>Remove</th>
+      </tr>
+      <% @tables.each do |table| %>
+          <tr>
+            <td><%= table.id %></td>
+            <td><%= table.name %></td>
+            <td>
+              <span class="label status-<%= table.status %>"><%= table.status %></span>
+            </td>
+            <td>
+                <%= link_to 'edit', edit_admin_table_path(table), :class => 'btn btn-success' %>
+            </td>
+            <td>
+                <%= link_to 'remove', admin_table_path(table), :class => 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

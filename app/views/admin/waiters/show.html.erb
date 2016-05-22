@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h1>Set Tables
+    <small> for <%= @waiter.firstname %> <%= @waiter.lastname %> </small>
+  </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <%= form_tag({:controller => "admin/waiters", :action => "update_tables"}, method: :post) do %>
+        <% @tables.each do |table| %>
+            <% fixed = @tables_status[table.id] == 'fixed' ? true : false %>
+            <% busy = @tables_status[table.id] == 'busy' ? true : false %>
+            <div class="field form-group">
+              <%= label_tag table.id %>
+              <%= label_tag table.name %>
+              <%= check_box_tag '[tables]' + table.id.to_s, nil, fixed, disabled: busy  %>
+            </div>
+        <% end %>
+        <%= submit_tag 'Set', class: 'right' %>
+    <% end %>
+  </div>
+</div>

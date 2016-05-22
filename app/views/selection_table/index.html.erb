@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1>Please select your table
+  </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <div class="row-eq-height">
+      <% if @tables.blank? %>
+          <h1>Sorry no available tables</h1>
+      <% else %>
+          <% @tables.each do |table| %>
+              <% if table.status == 'free' %>
+                  <div class="col-xs-12 col-sm-6 col-lg-3 table_icon_wrapp">
+                    <%= link_to "<div class=\"table_icon\"><div class=\"table_name\">#{table.name}</div></div>".html_safe, select_table_path(table.id) %>
+                  </div>
+              <% else %>
+                  <div class="col-xs-12 col-sm-6 col-lg-3 table_icon_wrapp">
+                    <div class="table_icon table_disabled"><div class="table_name"><%= table.name %></div></div>
+                  </div>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

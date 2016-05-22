@@ -1,0 +1,72 @@
+<div class="page-header">
+  <h1><%= @cocktail.name %>
+    <small><%= "#{@cocktail.value}ml" %></small>
+    <div class="btn-group right" role="group">
+      <%= link_to 'All', {action: :index} %>
+      <%= link_to 'Edit', {action: :edit} %>
+      <%= link_to 'Remove', admin_cocktail_path(@cocktail), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%= link_to 'Add Ingridient', new_admin_cocktail_ingridient_path(@cocktail) %>
+    </div>
+  </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-5 col-md-6 text-center">
+        <%= image_tag(@cocktail.image_url, size: '500', class: "img-thumbnail") %>
+      </div>
+      <br class="visible-xs-block">
+
+      <div class="col-sm-7 col-md-6">
+        <div>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Details</h3>
+            </div>
+            <ul class="list-group">
+              <li class="list-group-item"><%= "ID: #{@cocktail.id }" %></li>
+              <li class="list-group-item"><%= "Name: #{@cocktail.name }" %></li>
+              <li class="list-group-item"><%= "Min value: #{@cocktail.value}" %></li>
+              <li class="list-group-item"><%= "Cost price: #{@cocktail.price}" %></li>
+            </ul>
+          </div>
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <h3 class="panel-title">Ingridients</h3>
+            </div>
+            <ul class="list-group">
+              <% @cocktail.ingridients.each do |ingridient| %>
+                  <li class="list-group-item li-vert-align">
+                    <%= image_tag(ingridient.product.image_url, size: '50', class: "img-thumbnail") %>
+                    <%= "#{ingridient.product.name} #{ingridient.value}ml" %>
+                    <div class="btn-group-wrapper">
+                      <div class="btn-group li-vert-align" role="group">
+                        <%= link_to 'Edit', edit_admin_cocktail_ingridient_path(@cocktail, ingridient) %>
+                        <%= link_to 'Remove', admin_cocktail_ingridient_path(@cocktail, ingridient), method: :delete, data: {confirm: 'Are you sure?'} %>
+                      </div>
+                    </div>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Description</h3>
+      </div>
+      <div class="panel-body">
+        <%= @cocktail.description %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+

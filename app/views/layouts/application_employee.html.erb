@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cocktailbar</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= employees_root_path %>">Workplace</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+
+      <%= form_tag({:controller => "waiter_workspace", :action => "index"}, method: :get, enforce_utf8: false,class: "navbar-form navbar-left") do %>
+          <div class="dropdown">
+          <%= select_tag 'id', options_from_collection_for_select(Waiter.hired, 'id', 'fullname'),prompt: 'select waiter',onchange: "this.form.submit();"%>
+          </div>
+      <% end %>
+      <div class="navbar-right">
+      <% if @waiter%>
+          <h4 class="navbar-text"><%= "Hello, #{@waiter.firstname}" %></h4>
+          <p class="navbar-text"><%= "Your all time earnings: #{@waiter.worksets.sum(:total_earned)}" %> <span class="glyphicon glyphicon-usd" aria-hidden="true"></span></p>
+          <%end%>
+      <button type="button" class="navbar-btn"  aria-label="Left Align" > <%= link_to '<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>'.html_safe,'', { :onclick => "history.go(0)" }%>
+
+      </button></div>
+    </div>
+  </div>
+</nav>
+
+<% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "alert alert-#{key}")  %>
+<% end %>
+
+
+<%= yield %>
+
+</body>
+</html>

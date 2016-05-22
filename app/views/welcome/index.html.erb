@@ -1,0 +1,15 @@
+<% content_for :right_col do %>
+    Hello this is right col
+<% end %>
+
+<% content_for :left_col do %>
+    This is left column
+<% end %>
+
+<%= render partial: 'header', locals: {cocktails: @cocktails} %>
+
+<% @cocktails.each do |type, cocktails| %>
+    <%= render partial: 'group', locals: {cocktails: cocktails, type: type} %>
+<% end %>
+
+<%= debug params%>

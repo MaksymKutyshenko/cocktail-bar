@@ -1,0 +1,51 @@
+<div class="page-header">
+  <h1><%= @cocktail.name %>
+    <small><%= "#{@cocktail.value}ml" %></small>
+
+  <div class="right" role="group">
+    <small>
+    Price: <%= "#{@cocktail.price}$" %>
+      </small>
+  </div>
+  </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-sm-5 col-md-6 text-center">
+        <%= image_tag(@cocktail.image_url, size: '500', class: "img-thumbnail") %>
+      </div>
+      <br class="visible-xs-block">
+
+      <div class="col-sm-7 col-md-6">
+        <div>
+          <div class="panel panel-info">
+            <ul class="list-group">
+              <% @cocktail.ingridients.each do |ingridient| %>
+                  <li class="list-group-item li-vert-align">
+                    <%= image_tag(ingridient.product.image_url, size: '50', class: "img-thumbnail") %>
+                    <%= "#{ingridient.product.name} #{ingridient.value}ml" %>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Description</h3>
+      </div>
+      <div class="panel-body">
+        <%= @cocktail.description %>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+

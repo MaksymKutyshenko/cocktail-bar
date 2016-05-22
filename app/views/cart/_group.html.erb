@@ -1,0 +1,58 @@
+<% if (cocktails.present?)
+
+       output = ''
+       sum = 0
+       cocktails.each do |cocktail|
+       # puts '################'
+       # p cocktail
+       # puts '################'
+         output << '<tr>'
+         output << '<td>' << image_tag(cocktail.image_url, size: '50', class: "img-thumbnail") << '</td>'
+         output << '<td>' << cocktail.name << '</td>'
+         output << '<td>' << cocktail.value.to_s << '</td>'
+         output << '<td>' << cocktail.price.to_s << '</td>'
+         # if 'not payed' == type
+          # output << '<td>' << link_to('X', ordered_cocktail_path(cocktail.ordered_cockctail_id), method: :delete, data: {confirm: 'Are you sure?'},:class=>"btn btn-default", :role=>"button" ) << '</td>'
+         # end
+         output << '</tr>'
+
+         sum += cocktail.price.to_f
+
+       end
+    %>
+
+    <div class="page-header">
+      <h1><%= type.capitalize %>
+        <div class="right" role="group">
+          <small>
+            Total: $<%= sum %>
+          </small>
+        </div>
+      </h1>
+    </div>
+
+    <div class="body_panel panel-primary">
+    <div class="panel-body">
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th colspan="2">Cocktail Name</th>
+          <th>Value</th>
+          <th>Price</th>
+          <% if 'not payed' == type %>
+            <!--th></th-->
+          <%end%>
+        </tr>
+        </thead>
+        <tbody>
+       <%= output.html_safe %>
+        </tbody>
+      </table>
+
+      <% if 'not payed' == type %>
+          <%= link_to 'Checkout $'<<sum.to_s, checkout_path  , { :class=>"btn btn-primary", :role=>"button" } %>
+      <% end %>
+
+    </div>
+  </div>
+<% end %>

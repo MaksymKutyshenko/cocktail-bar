@@ -1,0 +1,42 @@
+<% if (cocktails.present?) %>
+<div class="body_panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= type.capitalize.pluralize%></h3>
+  </div>
+  <div class="panel-body">
+    <div class="row-eq-height">
+      <% cocktails.each do |cocktail| %>
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <div class="thumbnail">
+              <div style="text-align: center">
+                <%= link_to purchase_path(cocktail), class: "container_relative" do %>
+                    <%= image_tag(cocktail.image_url, class: "img-thumbnail") %>
+                    <div class="put_bottom_right">
+                      <h3><span class="label label-success"><%= cocktail.price %></span></h3>
+                    </div>
+                <% end %>
+              </div>
+              <div class="caption">
+                <h3 class="hide_overflow"><%= cocktail.name %></h3>
+
+                <p style="height: 36px">
+                  <% cocktail.ingridients.each do |ingridient| %>
+                      <span class="label ">
+                        <%= link_to ingridient.product.name, search_by_product_path(ingridient.product.name) %>
+                      </span>
+                  <% end %>
+                </p>
+
+                <p>
+                  <%= link_to add_to_cart_path(cocktail.id), { :class=>"btn btn-primary", :role=>"button" } do %>
+                      <i class="glyphicon glyphicon-shopping-cart"></i> Add To Cart
+                  <% end %>
+                  <a href="#" class="btn btn-default" role="button">Button</a></p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

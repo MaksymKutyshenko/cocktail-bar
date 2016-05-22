@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1><%= link_to image_tag(@ingridient.cocktail.image_url, size: '100', class: "img-thumbnail"),admin_cocktail_path(@ingridient.cocktail)%>
+    <%= "#{@ingridient.cocktail.name} #{action_name}"%>
+    <small><%= controller_name.humanize.singularize %></small></h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <div class="field form-group">
+      <%= f.label :value, class: "col-md-2 control-label"%>
+      <div class="col-md-10">
+        <%= f.number_field :value, class: "form-control"%>
+      </div>
+      </div>
+
+    <div class="field form-group">
+      <%= f.label :value, class: "col-md-2 control-label"%>
+      <div class="col-md-10">
+        <%= f.collection_select :product_id, Product.all, :id, :name, class: "form-control"%>
+      </div>
+    </div>
+
+    <%= f.hidden_field :cocktail_id, :value => params[:cocktail_id] %>
+
+    <div class="actions form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= f.submit "Save" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="page-header">
+  <h1><%= controller_name.humanize %>
+    <% if @cocktails.empty? %>
+    <small> have not been created yet</small>
+    <% else %>
+        <small><%= action_name %></small>
+    <% end %>
+    <div class="btn-group right" role="group">
+      <%= link_to 'Add', new_admin_cocktail_path %>
+    </div>
+  </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <table class="table table-hover">
+      <tr>
+      <th>Id</th>
+      <th>Name
+        <%= get_sort_buttons(admin_order_cocktails_path(:name, 'asc'), admin_order_cocktails_path(:name, 'desc')) %>
+      </th>
+      <th>Value</th>
+      <th>Price
+        <%= get_sort_buttons(admin_order_cocktails_path(:price, 'asc'), admin_order_cocktails_path(:price, 'desc')) %>
+      </th>
+        <th>Type</th>
+      <th></th>
+      </tr>
+      <% @cocktails.each do |cocktail| %>
+      <tr>
+        <td><%= cocktail.id %></td>
+        <td><%= link_to cocktail.name, admin_cocktail_path(cocktail) %></td>
+        <td><%= cocktail.value %></td>
+        <td><%= cocktail.price %></td>
+        <td><%= cocktail.type.capitalize %></td>
+        <td>
+          <div class="btn-group" role="group">
+            <%= link_to 'edit', edit_admin_cocktail_path(cocktail) %>
+            <%= link_to 'remove', admin_cocktail_path(cocktail), method: :delete, data: {confirm: 'Are you sure?'} %>
+          </div>
+        </td>
+      </tr>
+          <% end %>
+    </table>
+  </div>
+</div>
+<div class="body_panel panel-default">
+    <%= draw_pagination @items_count, @per_page %>
+</div>

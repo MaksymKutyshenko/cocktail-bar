@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h1><%= @product.name %>
+    <small><%= "#{@product.min_value}ml"%></small>
+    <div class="btn-group right" role="group">
+      <%= link_to 'All', {action: :index} %>
+      <%= link_to 'Edit', {action: :edit} %>
+      <%= link_to 'Remove', product_path(@product), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <%= link_to 'Add Cocktail', new_cocktail_path(product: @product.id) %>
+    </div>
+    </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag(@product.image_url, size: '350', class: "img-thumbnail")%>
+      </div>
+      <br class="visible-xs-block visible-sm-block">
+      <div class="col-md-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title">Details</h3>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item"><%= "ID: #{@product.id}" %></li>
+          <li class="list-group-item"><%= "Name: #{@product.name}" %></li>
+          <li class="list-group-item"><%= "Min value: #{@product.min_value}ml" %></li>
+          <li class="list-group-item"><%= "Cost price: #{@product.cost_price}$" %></li>
+          <li class="list-group-item"><%= "Type: #{@product.product_type}" %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+

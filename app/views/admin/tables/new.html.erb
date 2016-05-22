@@ -1,0 +1,7 @@
+<div class="page-header">
+  <h1><%= controller_name.humanize %><small><%= action_name %></small></h1>
+</div>
+<%= form_for [:admin, @table]  do |f| %>
+    <%= render partial: 'form', locals: {f: f} %>
+    <%= f.hidden_field(:status, :value => :free) %>
+<% end %>

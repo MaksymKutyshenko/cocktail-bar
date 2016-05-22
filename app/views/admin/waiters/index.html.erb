@@ -1,0 +1,45 @@
+<div class="page-header">
+  <h1><%= controller_name.humanize %>
+    <div class="btn-group right" role="group">
+      <%= link_to 'Add waiter', new_admin_waiter_path %>
+    </div>
+  </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <table class="table table-hover">
+      <tr>
+        <th>Id</th>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Last name</th>
+        <th>Tables
+        </th>
+        <th>Actions</th>
+      </tr>
+      <% @waiters.each do |waiter| %>
+          <% tables_count = @tables[waiter.id].nil? ? 0 : @tables[waiter.id].size %>
+          <tr>
+            <td><%= waiter.id %></td>
+            <td>
+                <%= image_tag(waiter.photo_url, size: '60', class: "img-thumbnail") %>
+            </td>
+            <td><%= waiter.firstname %></td>
+            <td><%= waiter.lastname %></td>
+            <td><%= link_to tables_count, admin_waiter_path(waiter)%></td>
+            <td>
+              <div class="btn-group" role="group">
+                <%= link_to 'edit', edit_admin_waiter_path(waiter) %>
+                <%= link_to 'remove', admin_waiter_path(waiter), method: :delete, data: {confirm: 'Are you sure?'} %>
+              </div>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<div class="body_panel panel-default">
+  <%#= debug params %>
+  <%#= draw_pagination @items_count, @per_page %>
+</div>

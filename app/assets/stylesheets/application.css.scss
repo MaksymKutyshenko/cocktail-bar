@@ -1,0 +1,152 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+input[type = submit] {
+  @extend .btn;
+  @extend .btn-success;
+}
+
+input[type = text] {
+  @extend .form-control;
+}
+
+input[type = number] {
+  @extend .form-control;
+}
+
+textarea {
+  @extend .form-control
+}
+
+
+select {
+  @extend .form-control;
+}
+
+.body_panel {
+  @extend .panel;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+label {
+  @extend .col-sm-2;
+  @extend .control-label;
+}
+
+form {
+  @extend .form-horizontal
+}
+
+.right {
+  float: right;
+}
+
+.btn-group > a {
+  @extend .btn;
+  @extend .btn-default;
+}
+
+.page-header {
+  @extend .page-header;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.hide_overflow
+{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.put_bottom_right
+{
+
+  padding-right: 6px;
+  bottom: 0;
+  right: 0;
+  position: absolute
+}
+
+.container_relative{
+  position: relative;
+  display: inline-block;
+}
+
+.table tbody>tr>td.vert-align
+{
+  vertical-align: middle;
+}
+
+.li-vert-align
+{
+  vertical-align: middle;
+}
+
+.btn-group-wrapper {
+  display: inline-block;
+  float: right;
+  height: 50px;
+  line-height: 50px;
+}
+
+.sorting-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0px 5px;
+}
+
+.sort-arrow {
+  display: block;
+  width: 0px;
+  height: 0px;
+  opacity: 0.8;
+  margin: 4px 0;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.asc-arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
+}
+
+.dsc-arrow {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid black;
+}
+
+.status-free {
+  @extend .label-success;
+}
+
+.status-occupied {
+  @extend .label-danger;
+}
+
+.status-inactive {
+  @extend .label-default;
+}
+
+.status-waiting {
+  @extend .label-info;
+}

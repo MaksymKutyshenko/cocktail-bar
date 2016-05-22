@@ -1,0 +1,36 @@
+<div class="body_panel panel-default">
+  <div class="panel-body">
+      <% if @waiter.photo? %>
+          <div class="field form-group">
+            <div class='col-md-offset-2 col-sm-offset-2 col-md-3 col-sm-3'>
+              <%= image_tag(@waiter.photo_url, size: '380', class: "img-thumbnail")%>
+            </div>
+          </div>
+        <div class='field form-group'>
+          <div class='col-md-offset-2 col-sm-offset-2 col-md-3 col-sm-3'>
+            <%= f.label :remove_photo %>
+            <%= f.check_box :remove_photo %>
+          </div>
+        </div>
+      <% end %>
+  </div>
+
+  <div class="panel-body">
+    <%= form_field_text(f, :firstname) %>
+    <%= form_field_text(f, :lastname) %>
+    <%= hidden_field('waiter', :status, value: :hired) %>
+  </div>
+
+  <div class='field form-group'>
+    <%= f.label :photo, class: 'col-md-2 control-label' %>
+    <div class='col-sm-3'>
+      <%= f.file_field :photo, multiple: false %>
+    </div>
+  </div>
+
+  <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit "Save" %>
+    </div>
+  </div>
+</div>

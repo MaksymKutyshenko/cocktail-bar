@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cocktailbar</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render partial: 'layouts/admin_menu' %>
+<% flash.each do |key, value| %>
+  <%= content_tag(:div, value, class: "alert alert-#{key}")  %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>

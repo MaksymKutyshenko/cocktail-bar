@@ -1,0 +1,27 @@
+<h1>Hi</h1>
+<% if @products.empty? %>
+<h2>Products list is empty</h2>
+    <% else %>
+    <table border="1">
+      <tr>
+        <th>Id</th>
+        <th>Product</th>
+        <th>Cost Price</th>
+        <th>Min Value</th>
+        <th>Type</th>
+        <th>Edit</th>
+        <th>Remove</th>
+      </tr>
+      <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= product.name %></td>
+        <td><%= product.cost_price %></td>
+        <td><%= product.min_value %></td>
+        <td><%= product.product_type %></td>
+        <td><%= link_to 'edit', edit_admin_product_path(product) %></td>
+        <td><%= link_to 'remove', admin_product_path(product), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+          <% end %>
+        </table>
+<% end %>
